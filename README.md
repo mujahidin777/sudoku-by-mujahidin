@@ -1,18 +1,16 @@
 # Sudoku by Mujahidin, S. Pd.
 
-Purwarupa awal website Sudoku edukatif menggunakan Next.js, TypeScript, Tailwind CSS, dan Supabase.
+Next.js + Supabase Sudoku educational app.
 
-## Menjalankan secara lokal
-1. Instal Node.js versi LTS.
-2. Jalankan `npm install`.
-3. Salin `.env.example` menjadi `.env.local` dan isi URL Supabase serta anon/publishable key.
-4. Jalankan `npm run dev` lalu buka http://localhost:3000.
+Student features: 30 sequential 9x9 puzzles in six levels, guest session, server deadline of 60 minutes, answer validation, locked clues, result score, leaderboard.
 
-## Supabase
-Jalankan `supabase/schema.sql` melalui SQL Editor pada proyek Supabase. Skema ini masih fondasi awal; kebijakan RLS dan fungsi server harus ditinjau dan dilengkapi sebelum dipakai siswa.
+Setup:
+1. Install Node.js LTS and run npm install.
+2. Copy .env.example to .env.local.
+3. Paste Supabase publishable key from Project Settings > API Keys into NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY.
+4. Run npm run dev.
 
-## Status
-Halaman depan, informasi enam level, aturan singkat, dan formulir identitas pemain sudah tersedia. Integrasi sesi game, timer server 60 menit, 30 puzzle dengan solusi unik, validasi jawaban di server, login admin, dashboard CMS, unggah media, dan leaderboard belum diimplementasikan. Jangan gunakan untuk penilaian resmi sebelum backend dan kebijakan keamanan selesai.
+Admin account:
+Create a user in Supabase Authentication > Users, then insert its UUID and email into public.admin_users. Admin panel is a remaining implementation item.
 
-## Keamanan penting
-Jangan pernah menaruh Supabase service-role key di browser atau variabel `NEXT_PUBLIC_*`. Jangan mengirim kunci rahasia melalui chat. Nama dan kelas bukan autentikasi; data hasil dan jawaban siswa harus dilindungi melalui RLS dan endpoint server.
+Never expose service role/secret key in browser, GitHub or NEXT_PUBLIC variables. Database direct access is revoked for anon/authenticated; Edge Function uses server-side key.
